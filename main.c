@@ -10,26 +10,22 @@ pthread_mutex_t mutex;
 
 void* thread1_handler(void* arg)
 {
-    ret = pthread_mutex_lock(&mutex);
+    //ret = pthread_mutex_lock(&mutex);
     printf(" thread1 \n");
 
-    ret = pthread_mutex_unlock(&mutex);
-
-    pthread_join(&thread1, NULL);
+    //ret = pthread_mutex_unlock(&mutex);
 }
 
 void* thread2_handler(void* arg)
 {
     printf(" thread2 \n");
 
-    pthread_join(&thread2, NULL);
 }
 
 void* thread3_handler(void* arg)
 {
     printf(" thread3 \n");
 
-    pthread_join(&thread3, NULL);
 }
 
 int main()
@@ -56,6 +52,10 @@ int main()
                          NULL,
                          &thread3_handler,
                          &arg);
+
+    pthread_join(thread1, NULL);
+    pthread_join(thread2, NULL);
+    pthread_join(thread3, NULL);
 
     
     
